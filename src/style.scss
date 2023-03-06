@@ -25,20 +25,33 @@ main {
     img {
         filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.25));
     }
+    div {
+        margin-right: 20px;
+        p, h1 {
+            font-family: sans-serif;
+        }
+    }
+}
+
+.location::after {
+    content: '|';
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 .day {
     background-color: rgba(255, 255, 255, 0.5);
     border: 1px solid white;
-    div {
-        color: white;
+    p, h1{
+        color: black;
     }
 }
 
 .night {
     background-color: rgba(0, 0, 0, 0.5);
     border: 1px solid black;
-    div {
-        color: black;
+    p, h1 {
+        color: white;
+        
     }
 }
