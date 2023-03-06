@@ -1,9 +1,15 @@
 import './style.scss';
 
 const $ = selector => document.querySelector(selector);
+const create = (element, className) => {
+    let x = document.createElement(element);
+    if (className) element.className = className;
+    return x;
+}
 
-$('body').appendChild(document.createElement('main'));
-$('main').appendChild(document.createElement('img'));
+$('body').appendChild(create('main'));
+$('main').appendChild(create('img'));
+
 
 import ClearSky from './weather-backgrounds/clear-sky.jpg'; // Zarif Ali
 import FewClouds from './weather-backgrounds/few-clouds.jpg'; // Yuriy Bogdanov
@@ -45,6 +51,11 @@ class Weather {
         $('img').src = `http://openweathermap.org/img/wn/${this.icon}@2x.png`;
     }
 
+    changeDayMode() {
+        if (this.icon.includes('n')) $('main').className = 'night';
+        if (this.icon.includes('d')) $('main').className = 'day';
+    }
+
     print() {
         console.log(`${this.location}\n${this.weather}\n${this.temperature}`);
     }
@@ -61,10 +72,11 @@ const searchLocation = async term => {
         currentWeather = new Weather(data);
         currentWeather.changeBackground();
         currentWeather.changeIcon();
+        currentWeather.changeDayMode();
         currentWeather.print();
     } catch (e) {
         alert(e);
     }
 }
 
-searchLocation('tokyo');
+searchLocation('munich');
